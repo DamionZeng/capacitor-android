@@ -42,6 +42,7 @@ jobs:
           map_token() {
             case "$1" in
               biometric) echo "@capawesome/capacitor-biometric" ;;
+              fs|filesystem) echo "@capacitor/filesystem" ;;
               file-picker) echo "@capawesome/capacitor-file-picker" ;;
               camera) echo "@capacitor/camera" ;;
               geolocation|location) echo "@capacitor/geolocation" ;;
@@ -88,7 +89,7 @@ jobs:
           fi
       - run: npx cap sync android
       - name: Inject Native Code
-        run: node scripts/inject_native.js
+        run: node scripts/inject_native.cjs
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
       - name: Decode keystore
