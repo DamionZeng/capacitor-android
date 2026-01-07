@@ -98,9 +98,10 @@ jobs:
             npx @capacitor/assets generate --android
           fi
       - run: npx cap sync android
-      - name: Bump Gradle wrapper to 8.4
+      - name: Upgrade Gradle wrapper to 8.4
         run: |
-          sed -i 's#https\://services\.gradle\.org/distributions/gradle-.*-all\.zip#https\://services.gradle.org/distributions/gradle-8.4-all.zip#' android/gradle/wrapper/gradle-wrapper.properties
+          cd android
+          ./gradlew wrapper --no-daemon --gradle-version 8.4
       - name: Inject Native Code
         run: node scripts/inject_native.cjs
       - name: Setup Android SDK
